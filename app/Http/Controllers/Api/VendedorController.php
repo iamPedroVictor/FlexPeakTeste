@@ -45,6 +45,15 @@ class VendedorController extends Controller
         $usuario = Auth::user();
         return response()->json($usuario, $this->successStatus);
     }
-
+ 
+    public function delete(){
+        $usuario = Auth::user();
+        if(!$usuario){
+            return response()-json(['Mensagem' => "Usuario não foi encontrado"], 404);
+        }
+        
+        $usuario->delete();
+        return response()->json(['mensagem' => "Vendedor deletado com sucesso",],200);
+    }
 
 }

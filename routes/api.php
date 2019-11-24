@@ -22,5 +22,6 @@ Route::namespace('Api')->name('api.')->group(function(){
     Route::post('register', 'VendedorController@register');
     Route::group(['middleware' => 'auth:api'], function(){
         Route::get('Vendedor', 'VendedorController@show');
+        Route::delete('Vendedor', 'VendedorController@delete');
     });
 });
