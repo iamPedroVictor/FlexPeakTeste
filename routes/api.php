@@ -24,9 +24,10 @@ Route::namespace('Api')->name('api.')->group(function(){
         Route::get('Vendedor', 'VendedorController@show');
         Route::delete('Vendedor', 'VendedorController@delete');
         Route::put('Vendedor', 'VendedorController@update');
+        Route::resource('Vendas', 'VendasController',
+            ['only' => ['index','show','store']]);
     });
     Route::resource('Produtos', 'ProdutosController',
     ['except' => ['create','edit', 'head', 'options']]);
-    Route::resource('Vendas', 'VendasController',
-    ['only' => ['index','show','store']]);
+
 });
