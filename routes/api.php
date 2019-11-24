@@ -25,4 +25,6 @@ Route::namespace('Api')->name('api.')->group(function(){
         Route::delete('Vendedor', 'VendedorController@delete');
         Route::put('Vendedor', 'VendedorController@update');
     });
+    Route::resource('Produtos', 'ProdutosController',
+    ['except' => ['create','edit', 'head', 'options']]);
 });
