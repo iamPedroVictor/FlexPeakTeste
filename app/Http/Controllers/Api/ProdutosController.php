@@ -10,6 +10,11 @@ use Validator;
 
 class ProdutosController extends Controller
 {
+
+    public function index(){
+        return Produto::paginate(10);
+    }
+
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'nome' => 'required',
