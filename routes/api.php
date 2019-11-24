@@ -27,4 +27,6 @@ Route::namespace('Api')->name('api.')->group(function(){
     });
     Route::resource('Produtos', 'ProdutosController',
     ['except' => ['create','edit', 'head', 'options']]);
+    Route::resource('Vendas', 'VendasController',
+    ['only' => ['index','show','store']]);
 });
