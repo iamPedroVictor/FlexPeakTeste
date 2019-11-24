@@ -49,4 +49,14 @@ class ProdutosController extends Controller
         return response()->json($produto);
     }
 
+    public function destroy($id){
+        $produto = Produto::find($id);
+        if(!$produto){
+            return response()->json([
+                'mensagem' => "Não foi encontrado o registro do produto com id: " . $id,], 404);
+        }
+        $produto->delete();
+        return response()->json(['mensagem' => "Produto deletado com sucesso",],200);
+    }
+
 }
