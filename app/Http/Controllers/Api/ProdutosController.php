@@ -15,6 +15,14 @@ class ProdutosController extends Controller
         return Produto::paginate(10);
     }
 
+    public function show($id){
+        $produto = Produto::find($id);
+        if(!$produto){
+            return response()->json(['Mensagem'=>'Não foi encontrado o produto com id: ' . $id], 404);
+        }
+        return response()->json($produto);
+    }
+
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'nome' => 'required',
