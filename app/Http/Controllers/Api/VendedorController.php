@@ -41,6 +41,10 @@ class VendedorController extends Controller
         }
     }
 
-    
+    public function show(){
+        $usuario = Auth::user();
+        return response()->json($usuario, $this->successStatus);
+    }
+
 
 }

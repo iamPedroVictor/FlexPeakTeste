@@ -20,4 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('Api')->name('api.')->group(function(){
     Route::post('login', 'VendedorController@login');
     Route::post('register', 'VendedorController@register');
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::get('Vendedor', 'VendedorController@show');
+    });
 });
