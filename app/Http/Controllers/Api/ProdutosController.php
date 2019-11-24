@@ -18,7 +18,7 @@ class ProdutosController extends Controller
     public function show($id){
         $produto = Produto::find($id);
         if(!$produto){
-            return response()->json(['Mensagem'=>'Não foi encontrado o produto com id: ' . $id], 404);
+            return response()->json(['Mensagem'=>'Não foi encontrado o registro do produto com id: ' . $id], 404);
         }
         return response()->json($produto);
     }
@@ -36,6 +36,17 @@ class ProdutosController extends Controller
         $produto->fill($input);
         $produto->save();
         return response()->json($produto, 201);
+    }
+
+    public function update(Request $request, $id){
+        $produto = Produto::find($id);
+        if(!$produto){
+            return response()->json([
+                'mensagem' => "Não foi encontrado o registro do produto com id: " . $id,], 404);
+        }
+        $produto->fill($request->all());
+        $produto->save();
+        return response()->json($produto);
     }
 
 }
