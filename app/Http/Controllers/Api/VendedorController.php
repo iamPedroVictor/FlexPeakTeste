@@ -26,8 +26,8 @@ class VendedorController extends Controller
         }
         $input = $request->except('senha');
         $input['password'] = bcrypt($request->senha);
-        $user = User::create($input);
-        $resposta['token'] = $user->createToken('Appname')->accessToken;
+        $usuario = User::create($input);
+        $resposta['token'] = $usuario->createToken('Appname')->accessToken;
         return response()->json($resposta, $this->successStatus);
     }
 
@@ -53,7 +53,14 @@ class VendedorController extends Controller
         }
         
         $usuario->delete();
-        return response()->json(['mensagem' => "Vendedor deletado com sucesso",],200);
+        return response()->json(['mensagem' => "Vendedor deletado com sucesso",], $this->successStatus);
+    }
+
+    public function Update(Request $request){
+        $usuario = Auth::user();
+        $usuario->fill($request->all());
+        $usuario->save();
+        return response()->json($usuario, $this->successStatus);
     }
 
 }
