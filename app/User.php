@@ -20,6 +20,8 @@ class User extends Authenticatable
         'nome', 'email', 'password', 'cep', 'rua'
     ];
     protected $primaryKey = 'id_usuario';
+    protected $table = "usuarios";
+
 
     /**
      * The attributes that should be hidden for arrays.
