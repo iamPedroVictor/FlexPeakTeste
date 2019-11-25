@@ -24,7 +24,7 @@ class RankController extends Controller
                 ->get();
         }else{
             $produtosId = DB::table('vendas')
-                ->groupBy('Id')
+                ->groupBy('id_produto')
                 ->orderByRaw('"Total de quantidade" DESC')
                 ->whereMonth('vendas.created_at', $request->mes)
                 ->whereYear('vendas.created_at', $request->ano)
