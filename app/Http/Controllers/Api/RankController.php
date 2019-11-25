@@ -25,7 +25,7 @@ class RankController extends Controller
         }else{
             $produtosId = DB::table('vendas')
                 ->groupBy('vendas.id_produto')
-                ->orderBy('sum(vendas.quantidade)','desc')
+                ->orderBy('sum(quantidade) FROM vendas','desc')
                 ->whereMonth('vendas.created_at', $request->mes)
                 ->whereYear('vendas.created_at', $request->ano)
                 ->limit($limit)
