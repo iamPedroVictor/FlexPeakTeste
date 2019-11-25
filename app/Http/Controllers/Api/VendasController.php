@@ -31,7 +31,7 @@ class VendasController extends Controller
         $venda = DB::table('vendas')
             ->leftJoin('produtos', 'vendas.id_produto','=','produtos.id_produto')
             ->leftJoin('usuarios', 'vendas.id_vendedor', '=', 'usuarios.id_usuario')
-            ->selectRaw('vendas.id_venda as Venda, vendas.quantidade as Quantidade, vendas.preco as "Preco", produtos.nome as Produto, usuarios.nome as Vendedor')
+            ->selectRaw('vendas.id_venda as id, vendas.quantidade as Quantidade, vendas.preco as "Preco", produtos.nome as Produto, usuarios.nome as Vendedor')
             ->where('id_venda','=',$id)
             ->get();
         if(!$venda){
