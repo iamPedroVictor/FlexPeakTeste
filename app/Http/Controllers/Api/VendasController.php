@@ -15,8 +15,7 @@ class VendasController extends Controller
 {
     public function index(Request $request){
         if(!$request->has('Mes')){
-            //return Venda::paginate(25);
-            return response()->json(["oi"=> "voltou", "usuario" => Auth::user()]);
+            return Venda::paginate(25);
         }
         if($request->has('Mes') && $request->has('Ano')){
             $resposta = DB::table('vendas')
@@ -57,6 +56,23 @@ class VendasController extends Controller
         $venda->fill($input);
         $venda->save();
         return response()->json($venda, 201);
+    }
+
+    public function Faturamento(Request $request){
+        if($request->has('Mes') && $request->has('Ano')){
+            $resposta = DB::table('vendas')
+            ->whereMonth('created_at', $request->Mes)
+            ->whereYear('created_at', $request->Ano)
+            ->get();
+            $faturamento = 0;
+            foreach($resposta as $item){
+                $faturamento += ($item->preco * $item->quantidade);
+            }
+
+            return response()->json(["faturamento" => $faturamento]);
+        }else{
+            return response()->json(["Mensagem" => "Fudeu"], 404);
+        }
     }
     
 }
