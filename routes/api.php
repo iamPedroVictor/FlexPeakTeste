@@ -26,6 +26,7 @@ Route::namespace('Api')->name('api.')->group(function(){
         Route::put('Vendedor', 'VendedorController@update');
         Route::resource('Vendas', 'VendasController',
             ['only' => ['index','show','store']]);
+        Route::get('Faturamento', 'VendasController@Faturamento');
     });
     Route::resource('Produtos', 'ProdutosController',
     ['except' => ['create','edit', 'head', 'options']]);
