@@ -13,12 +13,12 @@ class CriarTabelaVendas extends Migration
      */
     public function up()
     {
-        Schema::create('Vendas', function(Blueprint $table){
+        Schema::create('vendas', function(Blueprint $table){
             $table->increments('id_venda');
             $table->integer('id_vendedor')->unsigned();
-            $table->foreign('id_vendedor')->references('id_usuario')->on('Usuarios');
+            $table->foreign('id_vendedor')->references('id_usuario')->on('vendas');
             $table->integer('id_produto')->unsigned();
-            $table->foreign('id_produto')->references('id_produto')->on('Produtos');
+            $table->foreign('id_produto')->references('id_produto')->on('produtos');
             $table->integer('quantidade');
             $table->decimal('preco', 4, 2);
             $table->timestamps();
@@ -32,7 +32,7 @@ class CriarTabelaVendas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Vendas');
+        Schema::dropIfExists('vendas');
         //
     }
 }
