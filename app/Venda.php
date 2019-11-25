@@ -15,10 +15,10 @@ class Venda extends Model
     protected $primaryKey = 'id_venda';
     protected $table = "vendas";
 
-    public function Vendedor(){
-        return $this->hasOne('App\User');
+    public function vendedor(){
+        return $this->hasOne('App\User', 'id_usuario', 'id_vendedor');
     }
-    public function Produto(){
-        return $this->hasOne('App\Produto');
+    public function produto(){
+        return $this->hasOne('App\Produto','id_produto');
     }
 }
