@@ -32,7 +32,7 @@ class CriarTabelaVendas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendas');
+        Schema::dropIfExists('Vendas');
         //
     }
 }
