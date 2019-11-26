@@ -19,7 +19,7 @@ class RankController extends Controller
             $produtosId = DB::table('vendas')
                 ->select('produto', DB::raw('SUM(quantidade)'))
                 ->from('vendas')
-                ->groupBy('produto')
+                ->groupBy('produto','SUM(quantidade)')
                 ->orderBy('SUM(quantidade)', 'desc')
                 ->limit($limit)
                 ->get();
@@ -31,6 +31,7 @@ class RankController extends Controller
                 ->limit($limit)
                 ->select('produto', DB::raw('SUM(quantidade) FROM vendas'))
                 ->orderBy('SUM(quantidade)', 'desc')
+                ->groupBy('produto','SUM(quantidade)')
                 ->get();
         }
         $produtosId->put("length", $produtosId->count());
