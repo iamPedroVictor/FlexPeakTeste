@@ -34,7 +34,7 @@ class VendasController extends Controller
         }   
         $total = number_format($venda->Preco * $venda->Quantidade, 2);
         $venda->Total = (float)$total;
-        return response()->json($venda[0]);
+        return response()->json($venda);
     }
 
     public function store(Request $request){
