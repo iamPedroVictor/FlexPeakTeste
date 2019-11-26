@@ -17,7 +17,7 @@ class RankController extends Controller
         }
         if(!$request->has('mes') && !$request->has('ano')){
             $produtosId = DB::table('vendas')
-                ->select('produto', DB::raw('SUM(quantidade)'))
+                ->select('produto', DB::raw('SUM(quantidade) FROM vendas'))
                 ->groupBy('produto')
                 ->orderBy('SUM(quantidade)', 'desc')
                 ->limit($limit)
@@ -28,7 +28,7 @@ class RankController extends Controller
                 ->whereMonth('created_at', $request->mes)
                 ->whereYear('created_at', $request->ano)
                 ->limit($limit)
-                ->select('produto', DB::raw('SUM(quantidade)'))
+                ->select('produto', DB::raw('SUM(quantidade) FROM vendas'))
                 ->orderBy('SUM(quantidade)', 'desc')
                 ->get();
         }
