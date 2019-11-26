@@ -1,5 +1,5 @@
 <template>
-    <div id="login" class="center container w30">
+    <div id="login">
         <h1>Login</h1>
         <input type="text" name="email" v-model="input.email" placeholder="E-Mail" />
         <input type="password" name="password" v-model="input.password" placeholder="Senha" />
@@ -48,31 +48,5 @@
 </script>
 
 <style>
-    .center{
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .container{
-        display: flex;
-        flex-direction: column;
-    }
-    .container h1{
-        text-align: center;
-    }
-    .container input, .container button {
-        margin-top: 20px;
-    }
-    .container button{
-        width: 25%;
-        height: 50px;
-    }
-    .w30{
-        width: 30%;
-    }
-    .mensagem{
-        color: red;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 25px;
-    }
+
 </style>

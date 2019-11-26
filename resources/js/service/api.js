@@ -4,8 +4,9 @@ export default class API {
     constructor(recurso){
         this.recurso = recurso;
     }
-    all() {
-        return axios.get(`/api/${this.recurso}`);
+   
+    all(config = null) {
+        return axios.get(`/api/${this.recurso}`, config);
     }
     find(id) {
         return axios.get(`/api/${this.recurso}/${id}`);

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="container" v-if="fazerLogin">
+    <div v-if="fazerLogin">
       <login ></login>
-      <button type="button" class="center w30" v-on:click="registrar()">Registrar</button>
+      <button type="button" v-on:click="registrar()">Quero me registrar</button>
     </div>
-    <div class="container" v-else>
+    <div v-else>
       <registrar></registrar>
-      <button type="button" class="center w30" v-on:click="registrar()">Realizar login</button>
+      <button type="button" v-on:click="registrar()">Possuo uma conta e desejo fazer login</button>
     </div>
   </div>
 
@@ -40,8 +40,5 @@
 </script>
 
 <style>
-  .conteiner{
-    display: flex;
-    flex-direction: column;
-  }
+
 </style>

@@ -10,19 +10,19 @@
         name: 'headerX',
         data(){
             return {
-                data(){
-                    return {
-                        nome: "Pedro Victor",
-                        mes: "11",
-                        ano: "2019"
-                    }
-                }
+                nome: "Pedro Victor",
+                mes: "11",
+                ano: "2019"
             }
         }
     }
 </script>
 
 <style>
+    html, body {
+        width: 100%;
+        max-width: 1280px;
+    }
     header{
         top:0;
         color:black;
