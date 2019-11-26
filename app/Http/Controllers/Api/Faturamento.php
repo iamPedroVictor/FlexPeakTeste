@@ -48,7 +48,7 @@ class Faturamento extends Controller
     private function CalcularFaturamento($listaVendas){
         $faturamento = 0;
         foreach ($listaVendas as $venda) {
-            $faturamento += ($venda->preco * $item->quantidade);
+            $faturamento += ($venda->preco * $venda->quantidade);
         }
         return $faturamento;
     }
