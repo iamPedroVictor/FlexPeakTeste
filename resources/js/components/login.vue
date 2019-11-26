@@ -9,7 +9,9 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import Api from '../service/api';
+
+    const api = new Api('login');
 
     export default {
         name: 'login',
@@ -25,7 +27,7 @@
         methods: {
             login(){
                 if(this.input.email != "" && this.input.password != ""){
-                    axios.post('http://127.0.0.1:8000/api/login', {
+                    api.store({
                         email: this.input.email,
                         password: this.input.password
                     })

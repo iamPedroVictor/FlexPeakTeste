@@ -1,10 +1,16 @@
 <template>
-  <h1>token: {{token}}</h1>
+  <headerX></headerX>
 </template>
 
 <script>
-export default {
-    name: 'dashboard',
+
+    import  headerX from "../components/dashboard/headerX"
+
+    export default {
+        name: 'dashboard',
+        components: {
+            headerX
+        },
         data(){
             return {
                 token: null

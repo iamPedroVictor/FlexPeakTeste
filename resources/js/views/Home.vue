@@ -13,8 +13,8 @@
 </template>
 
 <script>
-  import login from "../components/login";
-  import registrar from "../components/register";
+  import login from "../components/login"
+  import registrar from "../components/register"
   
   export default {
     name: 'Home',

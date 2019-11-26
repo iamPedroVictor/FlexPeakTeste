@@ -32,8 +32,11 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import Viacep from '../service/viacep';
+    import Api from '../service/api';
 
+    const viacep = new Viacep();
+    const api = new Api('register');
     export default {
         name: 'login',
         data(){
@@ -52,7 +55,7 @@
         },
         methods: {
             cepInfo: function(){
-                axios.get(`https://viacep.com.br/ws/${this.input.cep}/json/`)
+                viacep.get(this.input.cep)
                     .then(response => {
                         this.input.rua = response.data.logradouro;
                         this.Achou = "true";
@@ -61,7 +64,7 @@
             },
             checkForm: function(e){
                 e.preventDefault();
-                axios.post('http://127.0.0.1:8000/api/register', {
+                api.store({
                     nome: this.input.nome,
                     email: this.input.email,
                     senha: this.input.senha,
