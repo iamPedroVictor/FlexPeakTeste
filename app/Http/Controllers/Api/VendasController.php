@@ -32,7 +32,7 @@ class VendasController extends Controller
         if(!$venda){
             return response()->json(['Mensagem'=>'Não foi encontrado o registro da venda de id: ' . $id], 404);
         }   
-        $total = number_format($venda->Preco * $venda->Quantidade, 2);
+        $total = number_format($venda->preco * $venda->quantidade, 2);
         $venda->Total = (float)$total;
         return response()->json($venda);
     }
