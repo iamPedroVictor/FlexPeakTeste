@@ -10,6 +10,7 @@ class Venda extends Model
         'vendedor',
         'produto',
         'preco',
+        'id_produto',
         'quantidade'
     ];
     protected $primaryKey = 'id_venda';

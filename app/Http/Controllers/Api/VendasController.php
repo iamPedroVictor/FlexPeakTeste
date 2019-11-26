@@ -50,6 +50,7 @@ class VendasController extends Controller
         $produto = Produto::find($input["produto"]);
         $input["produto"] = $produto->nome;
         $input["preco"] = $produto->preco;
+        $input["id_produto"] = $request->produto;
         $venda = new Venda();
         $venda->fill($input);
         $venda->save();

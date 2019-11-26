@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Venda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -16,29 +17,48 @@ class RankController extends Controller
         }
         if(!$request->has('mes') && !$request->has('ano')){
             $produtosId = DB::table('vendas')
-                ->groupBy('vendas.id_produto','produtos.nome')
-                ->orderByRaw('sum(quantidade) from "vendas" DESC')
+                ->select('produto', DB::raw('SUM(quantidade)'))
+                ->groupBy('produto')
+                ->orderBy('SUM(quantidade)', 'desc')
                 ->limit($limit)
-                ->leftJoin('produtos', 'vendas.id_produto', '=', 'produtos.id_produto')
-                ->selectRaw('vendas.id_produto as Id, sum(quantidade) as Total, produtos.nome as Nome')
                 ->get();
         }else{
             $produtosId = DB::table('vendas')
-                ->groupBy('vendas.id_produto','produtos.nome')
-                ->orderByRaw('sum(quantidade) from "vendas" DESC')
-                ->whereMonth('vendas.created_at', $request->mes)
-                ->whereYear('vendas.created_at', $request->ano)
+                ->groupBy('produto')
+                ->whereMonth('created_at', $request->mes)
+                ->whereYear('created_at', $request->ano)
                 ->limit($limit)
-                ->join('produtos', 'vendas.id_produto', '=', 'produtos.id_produto')
-                ->selectRaw('vendas.id_produto as Id, sum(quantidade) from "vendas" as Total, produtos.nome as Nome')
+                ->select('produto', DB::raw('SUM(quantidade)'))
+                ->orderBy('SUM(quantidade)', 'desc')
                 ->get();
-            $count = 0;
-            foreach ($produtosId as $produto) {
-                $count++;
-                $produto->Posicao = $count;
-            }
         }
         $produtosId->put("length", $produtosId->count());
         return response()->json($produtosId);
+    }
+
+    public function VendedoresRank(Request $request){
+        $limit = 3;
+        if($request->has('limit')){
+            $limit = $request->limit;
+        }
+        if(!$request->has('mes') && !$request->has('ano')){
+            $vendedores = DB::table('vendas')
+                ->select('vendedor', DB::raw('SUM(quantidade)'))
+                ->groupBy('vendedor')
+                ->orderBy('SUM(quantidade)', 'desc')
+                ->limit($limit)
+                ->get();
+        }else{
+            $vendedores = DB::table('vendas')
+                ->whereMonth('created_at', $request->mes)
+                ->whereYear('created_at', $request->ano)
+                ->select('vendedor', DB::raw('SUM(quantidade)'))
+                ->groupBy('vendedor')
+                ->orderBy('SUM(quantidade)', 'desc')
+                ->limit($limit)
+                ->get();
+        }
+        $vendedores->put("length", $vendedores->count());
+        return response()->json($vendedores);
     }
 }

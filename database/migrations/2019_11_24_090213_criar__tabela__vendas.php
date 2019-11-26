@@ -15,6 +15,7 @@ class CriarTabelaVendas extends Migration
     {
         Schema::create('vendas', function(Blueprint $table){
             $table->increments('id_venda');
+            $table->integer('id_produto');
             $table->string('vendedor');
             $table->string('produto');
             $table->integer('quantidade');
