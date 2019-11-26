@@ -15,10 +15,8 @@ class CriarTabelaVendas extends Migration
     {
         Schema::create('vendas', function(Blueprint $table){
             $table->increments('id_venda');
-            $table->integer('id_vendedor')->unsigned();
-            $table->foreign('id_vendedor')->references('id_usuario')->on('usuarios');
-            $table->integer('id_produto')->unsigned();
-            $table->foreign('id_produto')->references('id_produto')->on('produtos');
+            $table->string('vendedor');
+            $table->string('produto');
             $table->integer('quantidade');
             $table->decimal('preco', 4, 2);
             $table->timestamps();

@@ -29,9 +29,7 @@ class VendasController extends Controller
 
     public function show($id){
         $venda = DB::table('vendas')
-            ->leftJoin('produtos', 'vendas.id_produto','=','produtos.id_produto')
-            ->leftJoin('usuarios', 'vendas.id_vendedor', '=', 'usuarios.id_usuario')
-            ->selectRaw('vendas.id_venda as id, vendas.quantidade as Quantidade, vendas.preco as "Preco", produtos.nome as Produto, usuarios.nome as Vendedor')
+            ->select()
             ->where('id_venda','=',$id)
             ->get();
         if(!$venda){
@@ -51,9 +49,9 @@ class VendasController extends Controller
             return response()->json(['Erro' => $validator->erros()], 401);
         }
         $input = $request->all();
-        $input["id_vendedor"] = Auth::user()->id_usuario;
-        $input["id_produto"] = $input["produto"];
+        $input["vendedor"] = Auth::user()->nome;
         $produto = Produto::find($input["produto"]);
+        $input["produto"] = $produto->nome;
         $input["preco"] = $produto->preco;
         $venda = new Venda();
         $venda->fill($input);
