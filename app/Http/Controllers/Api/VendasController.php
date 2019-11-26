@@ -28,10 +28,7 @@ class VendasController extends Controller
     }
 
     public function show($id){
-        $venda = DB::table('vendas')
-            ->select()
-            ->where('id_venda','=',$id)
-            ->get();
+        $venda = Venda::find($id);
         if(!$venda){
             return response()->json(['Mensagem'=>'Não foi encontrado o registro da venda de id: ' . $id], 404);
         }   

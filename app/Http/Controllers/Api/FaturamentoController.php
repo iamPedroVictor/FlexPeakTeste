@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Faturamento extends Controller
+class FaturamentoController extends Controller
 {
     public function Mensal(Request $request, $mes){
         $faturamento = 0;
